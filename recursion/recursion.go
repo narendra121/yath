@@ -72,15 +72,16 @@ func RopeCuttingProblem(ropeSize, size1, size2, size3 float64) float64 {
 	return res + 1
 }
 
-func GeneratePossibleSubStrs(inp, res string, idx int) {
+func GeneratePossibleSubStrs(inp, res string, idx int) { //abc "" 0
 	if idx == len(inp) {
 		fmt.Println(res)
 		return
 	}
 	GeneratePossibleSubStrs(inp, res, idx+1)
-	GeneratePossibleSubStrs(inp, res+string(inp[idx]), idx+1)
+	GeneratePossibleSubStrs(inp, res+string(inp[idx]), idx+1) //abc
 }
 
+// https://www.youtube.com/watch?v=0nKIr3kAt-k
 func TowerOfHanoi(height int, towerA, towerB, towerC string) {
 	if height == 1 {
 		fmt.Println("Move	1	from	" + towerA + "	to	" + towerC)
@@ -90,4 +91,37 @@ func TowerOfHanoi(height int, towerA, towerB, towerC string) {
 	fmt.Println("Move   ", height, "	from	"+towerA+"	to	"+towerC)
 	TowerOfHanoi(height-1, towerB, towerA, towerC)
 
+}
+
+func JoshphusProblem(propleCount, position int) int {
+	if propleCount == 1 {
+		return 0
+	}
+	return (JoshphusProblem(propleCount-1, position) + position) % propleCount
+}
+
+func SubsetSumProblem(inp []int, length, sum int) int {
+	if length == 0 {
+		if sum == 0 {
+			return 1
+		}
+
+		return 0
+
+	}
+	return SubsetSumProblem(inp, length-1, sum) + SubsetSumProblem(inp, length-1, sum-inp[length-1])
+}
+
+func Permutation(inp string, idx int) {
+	if idx == len(inp)-1 {
+		fmt.Println(inp)
+		return
+	}
+	for i := idx; i < len(inp); i++ {
+		temp := []byte(inp)
+		temp[idx], temp[i] = temp[i], temp[idx]
+		Permutation(string(temp), idx+1)
+		temp1 := []byte(inp)
+		temp1[idx], temp1[i] = temp1[i], temp1[idx]
+	}
 }
