@@ -74,26 +74,28 @@ func StartSnakesAndLaddersGame() {
 			for !strings.EqualFold(check, "y") || !strings.EqualFold(check, "d") || !strings.EqualFold(check, "s") {
 				fmt.Println()
 				if ScoreBoard[1][j] < 0 {
-					fmt.Print("Player:", ScoreBoard[0][j], " Dropped from game")
+					fmt.Println("Player:", ScoreBoard[0][j], " Dropped from game")
 					break
 				}
-				fmt.Print("Player:", ScoreBoard[0][j], " Please type  y  to roll the dice or d to display score  or s to drop from the game:")
+				fmt.Println("Player:", ScoreBoard[0][j], " Please type :\n\tY: To roll the dice.\n\tS: To display scoreboard.\n\tD: To drop from the game.")
+				fmt.Print("Type your choice: ")
 				fmt.Scan(&check)
 				if strings.EqualFold(check, "y") {
 					fmt.Println("dice value is: ", inp)
+					prevPosition := ScoreBoard[1][j]
 					ScoreBoard[1][j] = GetPosition(inp, ScoreBoard[1][j])
 
-					fmt.Println(ScoreBoard[0][j], " current position is: ", ScoreBoard[1][j])
+					fmt.Println("position changed from: ", prevPosition, "to :", ScoreBoard[1][j])
 					if ScoreBoard[1][j] == 100 {
-						fmt.Println("THE WINNER IS ", ScoreBoard[0][j])
+						fmt.Println("THE WINNER IS Player: ", ScoreBoard[0][j])
 						return
 					}
 					break
-				} else if strings.EqualFold(check, "d") {
-					fmt.Println(ScoreBoard)
 				} else if strings.EqualFold(check, "s") {
+					fmt.Println(ScoreBoard)
+				} else if strings.EqualFold(check, "d") {
 					ScoreBoard[1][j] = -1
-					fmt.Println("Droppeing Player: ", ScoreBoard[0][j])
+					fmt.Println("Dropping Player: ", ScoreBoard[0][j])
 					dropperCount -= 1
 				} else {
 					fmt.Println("wrong input")
