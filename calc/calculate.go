@@ -3,8 +3,7 @@ package calc
 import (
 	"math"
 	"sort"
-
-	"github.com/narendra121/yath/check"
+	"yath/check"
 )
 
 var bit32Table [256]int

@@ -28,7 +28,7 @@ func CreateDoubleLinkedList() *dNode {
 }
 
 func CreateDoubleLinkedListFromArray(inp []int) {
-	
+
 }
 
 func TraverseDoubleLinkedList(head *dNode) {
@@ -98,4 +98,41 @@ func DeleteTailOfDoubleLinkdList(head *dNode) *dNode {
 	}
 	cur.next = nil
 	return head
+}
+
+func CreateCircularDoublyLinkedList() *dNode {
+	head := getDNode(10)
+	temp1 := getDNode(20)
+	temp2 := getDNode(30)
+	head.prev = temp2
+	head.next = temp1
+
+	temp1.prev = head
+	temp1.next = temp2
+
+	temp2.prev = temp1
+	temp2.next = head
+	return head
+}
+
+func InsertAtTheBeginOfCircilarDoubleLinkedList(head *dNode, data int) *dNode {
+	newHead := getDNode(data)
+	headPrev := head.prev
+	head.prev = newHead
+	newHead.prev = headPrev
+	newHead.next = head
+	headPrev.next = newHead
+	return newHead
+}
+
+func TraverseCircularDoublyLinkedList(head *dNode) {
+
+	temp := head.next
+
+	fmt.Println(head.data)
+	for temp != head {
+		fmt.Println(temp.data)
+		temp = temp.next
+	}
+
 }
