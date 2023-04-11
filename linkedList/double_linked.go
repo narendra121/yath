@@ -3,15 +3,15 @@ package linkedList
 import "fmt"
 
 type dNode struct {
-	data int
-	next *dNode
+	Data int
+	Next *dNode
 	prev *dNode
 }
 
-func getDNode(data int) *dNode {
+func getDNode(Data int) *dNode {
 	return &dNode{
-		data: data,
-		next: nil,
+		Data: Data,
+		Next: nil,
 		prev: nil,
 	}
 }
@@ -20,9 +20,9 @@ func CreateDoubleLinkedList() *dNode {
 	head := getDNode(10)
 	temp1 := getDNode(20)
 	temp2 := getDNode(30)
-	head.next = temp1
+	head.Next = temp1
 	temp1.prev = head
-	temp1.next = temp2
+	temp1.Next = temp2
 	temp2.prev = temp1
 	return head
 }
@@ -36,20 +36,20 @@ func TraverseDoubleLinkedList(head *dNode) {
 		fmt.Println("empty head")
 		return
 	}
-	if head.next == nil {
-		fmt.Println(head.data)
+	if head.Next == nil {
+		fmt.Println(head.Data)
 	}
 	cur := head
-	for cur.next != nil {
-		fmt.Println(cur.data)
-		cur = cur.next
+	for cur.Next != nil {
+		fmt.Println(cur.Data)
+		cur = cur.Next
 	}
-	fmt.Println(cur.data)
+	fmt.Println(cur.Data)
 }
 
-func InsertAtTheBeginOfDoubleLinkedList(head *dNode, data int) *dNode {
-	cur := getDNode(data)
-	cur.next = head
+func InsertAtTheBeginOfDoubleLinkedList(head *dNode, Data int) *dNode {
+	cur := getDNode(Data)
+	cur.Next = head
 	if head == nil {
 		head.prev = cur
 	}
@@ -61,15 +61,15 @@ func InsertAtTheBeginOfDoubleLinkedList(head *dNode, data int) *dNode {
 // 40 --> 30 --> 20 10
 
 func ReverseDoubleLinkedList(head *dNode) *dNode {
-	if head == nil || head.next == nil {
+	if head == nil || head.Next == nil {
 		return head
 	}
 	var prev *dNode
 	cur := head
 	for cur != nil {
 		prev = cur.prev
-		cur.prev = cur.next
-		cur.next = prev
+		cur.prev = cur.Next
+		cur.Next = prev
 		cur = cur.prev
 	}
 	return prev.prev
@@ -79,24 +79,24 @@ func DeleteTheHeadOfDoubleLinkdList(head *dNode) *dNode {
 	if head == nil {
 		return nil
 	}
-	newHead := head.next
+	newHead := head.Next
 	if newHead != nil {
 		newHead.prev = nil
 	}
-	head.next = nil
+	head.Next = nil
 	return newHead
 }
 
 func DeleteTailOfDoubleLinkdList(head *dNode) *dNode {
-	if head == nil || head.next == nil {
+	if head == nil || head.Next == nil {
 		return nil
 	}
 	// 10 20 30
 	cur := head
-	for cur.next.next != nil {
-		cur = cur.next
+	for cur.Next.Next != nil {
+		cur = cur.Next
 	}
-	cur.next = nil
+	cur.Next = nil
 	return head
 }
 
@@ -105,34 +105,34 @@ func CreateCircularDoublyLinkedList() *dNode {
 	temp1 := getDNode(20)
 	temp2 := getDNode(30)
 	head.prev = temp2
-	head.next = temp1
+	head.Next = temp1
 
 	temp1.prev = head
-	temp1.next = temp2
+	temp1.Next = temp2
 
 	temp2.prev = temp1
-	temp2.next = head
+	temp2.Next = head
 	return head
 }
 
-func InsertAtTheBeginOfCircilarDoubleLinkedList(head *dNode, data int) *dNode {
-	newHead := getDNode(data)
+func InsertAtTheBeginOfCircilarDoubleLinkedList(head *dNode, Data int) *dNode {
+	newHead := getDNode(Data)
 	headPrev := head.prev
 	head.prev = newHead
 	newHead.prev = headPrev
-	newHead.next = head
-	headPrev.next = newHead
+	newHead.Next = head
+	headPrev.Next = newHead
 	return newHead
 }
 
 func TraverseCircularDoublyLinkedList(head *dNode) {
 
-	temp := head.next
+	temp := head.Next
 
-	fmt.Println(head.data)
+	fmt.Println(head.Data)
 	for temp != head {
-		fmt.Println(temp.data)
-		temp = temp.next
+		fmt.Println(temp.Data)
+		temp = temp.Next
 	}
 
 }

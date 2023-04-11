@@ -3,27 +3,30 @@ package linkedList
 import "fmt"
 
 /*Node struct here
-data --> will store the value
-next --> will store next node's address */
+Data --> will store the value
+Next --> will store Next node's address */
 type Node struct {
-	data int
-	next *Node
+	Data int
+	Next *Node
 }
 
 //It will create the node from the input value
 func getNode(inp int) *Node {
 	return &Node{
-		data: inp,
-		next: nil,
+		Data: inp,
+		Next: nil,
 	}
 }
 
 //get simple linked list
 func CreateSingleLinkedList() *Node {
 	head := getNode(10)
-	head.next = getNode(20)
-	head.next.next = getNode(30)
-	head.next.next.next = getNode(40)
+	head.Next = getNode(20)
+	head.Next.Next = getNode(30)
+	head.Next.Next.Next = getNode(40)
+	head.Next.Next.Next.Next = getNode(50)
+	head.Next.Next.Next.Next.Next = getNode(60)
+
 	return head
 }
 
@@ -39,13 +42,13 @@ func TraverseSingleLinkedList(head *Node) {
 	if head == nil {
 		return
 	}
-	fmt.Println(head.data)
-	TraverseSingleLinkedList(head.next)
+	fmt.Println(head.Data)
+	TraverseSingleLinkedList(head.Next)
 }
 
 func InsertAtTheBeginOfSingleLinkdList(head *Node, inp int) *Node { //O(n)
 	temp := getNode(inp)
-	temp.next = head
+	temp.Next = head
 	return temp
 }
 
@@ -55,56 +58,56 @@ func InsertAtTheEndOfLinkdList(head *Node, inp int) *Node { //O(n)
 		return temp
 	}
 	cur := head
-	for cur.next != nil {
-		cur = cur.next
+	for cur.Next != nil {
+		cur = cur.Next
 	}
-	cur.next = temp
+	cur.Next = temp
 	return head
 }
 func DeleteHeadOfTheSingleLinkdList(head *Node) *Node {
-	return head.next
+	return head.Next
 }
 
 func DeleteTailOfTheSingleLinkdList(head *Node) *Node {
 	cur := head
-	if head == nil || head.next == nil {
+	if head == nil || head.Next == nil {
 		return nil
 	}
-	for cur.next.next != nil {
-		cur = cur.next
+	for cur.Next.Next != nil {
+		cur = cur.Next
 	}
-	cur.next = nil
+	cur.Next = nil
 	return head
 }
-func InsertValueAtKthNodeSingleLinkdList(head *Node, position, data int) *Node {
-	temp := getNode(data)
+func InsertValueAtKthNodeSingleLinkdList(head *Node, position, Data int) *Node {
+	temp := getNode(Data)
 	if position == 1 {
-		temp.next = head
+		temp.Next = head
 		return temp
 	}
 	cur := head
 	for i := 1; i < position && cur != nil; i++ {
-		cur = cur.next
+		cur = cur.Next
 	}
 	if cur == nil {
 		return head
 	}
-	temp.next = cur.next
+	temp.Next = cur.Next
 	return head
 }
 
 func SearchInSingleLinkdList(position int, head *Node) int {
 	if position == 1 && head != nil {
-		return head.data
+		return head.Data
 	}
 	cur := head
-	for i := 1; i < position && cur.next != nil; i++ {
-		cur = cur.next
-		if i < position && cur.next == nil {
+	for i := 1; i < position && cur.Next != nil; i++ {
+		cur = cur.Next
+		if i < position && cur.Next == nil {
 			return -1
 		}
 	}
-	return cur.data
+	return cur.Data
 }
 
 //10 5 20 15
@@ -113,10 +116,10 @@ func CreateSingleCircularLinkdList() *Node {
 	temp1 := getNode(5)
 	temp2 := getNode(20)
 	temp3 := getNode(15)
-	head.next = temp1
-	head.next.next = temp2
-	head.next.next.next = temp3
-	head.next.next.next.next = head
+	head.Next = temp1
+	head.Next.Next = temp2
+	head.Next.Next.Next = temp3
+	head.Next.Next.Next.Next = head
 	return head
 }
 
@@ -125,40 +128,40 @@ func TraverseSingleCircularLinkedList(head *Node) {
 	if head == nil {
 		return
 	}
-	fmt.Println(head.data)
-	for p := head.next; p != head; p = p.next {
-		fmt.Println(p.data)
+	fmt.Println(head.Data)
+	for p := head.Next; p != head; p = p.Next {
+		fmt.Println(p.Data)
 	}
 }
 
 // https://github.com/onosproject/gnxi-simulators/blob/master/docs/README.md
-func InsertAtBeginOfCircularSingleLinkedList(head *Node, data int) *Node {
+func InsertAtBeginOfCircularSingleLinkedList(head *Node, Data int) *Node {
 
 	temp := head
-	newHead := getNode(data)
-	newHead.next = head
+	newHead := getNode(Data)
+	newHead.Next = head
 	if head == nil {
-		temp.next = temp
+		temp.Next = temp
 	} else {
-		for temp.next != head {
-			temp = temp.next
+		for temp.Next != head {
+			temp = temp.Next
 		}
-		temp.next = newHead
+		temp.Next = newHead
 	}
 	return newHead
 }
 
-func InsertAtTheEndOfTheCircularSingleLinkedList(head *Node, data int) *Node {
-	newTail := getNode(data)
-	newTail.next = head
+func InsertAtTheEndOfTheCircularSingleLinkedList(head *Node, Data int) *Node {
+	newTail := getNode(Data)
+	newTail.Next = head
 	temp := head
 	if head == nil {
-		head.next = newTail
+		head.Next = newTail
 	} else {
-		for temp.next != head {
-			temp = temp.next
+		for temp.Next != head {
+			temp = temp.Next
 		}
-		temp.next = newTail
+		temp.Next = newTail
 	}
 	return head
 }
@@ -167,18 +170,18 @@ func DeleteKthNodeFromCircularLinkedList(head *Node, position int) *Node {
 	if head == nil || position <= 0 {
 
 	} else if position == 1 {
-		for temp.next != head {
-			temp = temp.next
+		for temp.Next != head {
+			temp = temp.Next
 		}
-		temp.next = head.next
-		head = head.next
+		temp.Next = head.Next
+		head = head.Next
 	} else {
 
 		for i := 1; i < position-1 && temp != nil && temp != head; i++ {
-			temp = temp.next
+			temp = temp.Next
 		}
-		oldTail := temp.next
-		temp.next = oldTail.next
+		oldTail := temp.Next
+		temp.Next = oldTail.Next
 		oldTail = nil
 	}
 	return head
