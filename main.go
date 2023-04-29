@@ -1,7 +1,6 @@
 package main
 
 import (
-	"sync"
 	"yath/linkedList"
 )
 
@@ -16,10 +15,13 @@ func main() {
 	// fmt.Println(<-ch1)
 
 	// wg.Wait()
-	linkedList.ReverseSLinkedListAtKGroups(linkedList.CreateSingleLinkedList(),3)
+	// linkedList.ReverseSLinkedListAtKGroups(linkedList.CreateSingleLinkedList(),3)
 
-}
-func add(a int, ch1 chan int, wg *sync.WaitGroup) {
-	ch1 <- a + 1
-	wg.Done()
+	// linkedList.TraverseSingleLinkedList(linkedList.SegregateEvenAndOddInSLinkedList(linkedList.CreateSingleLinkedList()))
+	// m := normal.NewHashTable()
+	// m.AddValueToSlice(1, 2, 3, 4, 2, 5, 1)
+	// m.PrintAll()
+	// fmt.Println(m.GetIndexOfValue(7))
+
+	linkedList.TraverseDoubleLinkedList(linkedList.CreateDoubleLinkedListFromArray([]int{1, 2, 3, 4}))
 }

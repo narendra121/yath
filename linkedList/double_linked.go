@@ -2,36 +2,47 @@ package linkedList
 
 import "fmt"
 
-type dNode struct {
+type DNode struct {
 	Data int
-	Next *dNode
-	prev *dNode
+	Next *DNode
+	Prev *DNode
 }
 
-func getDNode(Data int) *dNode {
-	return &dNode{
+func GetDNode(Data int) *DNode {
+	return &DNode{
 		Data: Data,
 		Next: nil,
-		prev: nil,
+		Prev: nil,
 	}
 }
 
-func CreateDoubleLinkedList() *dNode {
-	head := getDNode(10)
-	temp1 := getDNode(20)
-	temp2 := getDNode(30)
+func CreateDoubleLinkedList() *DNode {
+	head := GetDNode(10)
+	temp1 := GetDNode(20)
+	temp2 := GetDNode(30)
 	head.Next = temp1
-	temp1.prev = head
+	temp1.Prev = head
 	temp1.Next = temp2
-	temp2.prev = temp1
+	temp2.Prev = temp1
 	return head
 }
 
-func CreateDoubleLinkedListFromArray(inp []int) {
-
+func CreateDoubleLinkedListFromArray(inp []int) *DNode {
+	prev := GetDNode(inp[0])
+	head := prev
+	for i, val := range inp {
+		if i == 0 {
+			continue
+		}
+		data := GetDNode(val)
+		data.Prev = prev
+		prev.Next = data
+		prev = data
+	}
+	return head
 }
 
-func TraverseDoubleLinkedList(head *dNode) {
+func TraverseDoubleLinkedList(head *DNode) {
 	if head == nil {
 		fmt.Println("empty head")
 		return
@@ -47,11 +58,11 @@ func TraverseDoubleLinkedList(head *dNode) {
 	fmt.Println(cur.Data)
 }
 
-func InsertAtTheBeginOfDoubleLinkedList(head *dNode, Data int) *dNode {
-	cur := getDNode(Data)
+func InsertAtTheBeginOfDoubleLinkedList(head *DNode, Data int) *DNode {
+	cur := GetDNode(Data)
 	cur.Next = head
 	if head == nil {
-		head.prev = cur
+		head.Prev = cur
 	}
 
 	return cur
@@ -60,34 +71,34 @@ func InsertAtTheBeginOfDoubleLinkedList(head *dNode, Data int) *dNode {
 // 10 --> 20 -->  30 --> 40
 // 40 --> 30 --> 20 10
 
-func ReverseDoubleLinkedList(head *dNode) *dNode {
+func ReverseDoubleLinkedList(head *DNode) *DNode {
 	if head == nil || head.Next == nil {
 		return head
 	}
-	var prev *dNode
+	var prev *DNode
 	cur := head
 	for cur != nil {
-		prev = cur.prev
-		cur.prev = cur.Next
+		prev = cur.Prev
+		cur.Prev = cur.Next
 		cur.Next = prev
-		cur = cur.prev
+		cur = cur.Prev
 	}
-	return prev.prev
+	return prev.Prev
 }
 
-func DeleteTheHeadOfDoubleLinkdList(head *dNode) *dNode {
+func DeleteTheHeadOfDoubleLinkdList(head *DNode) *DNode {
 	if head == nil {
 		return nil
 	}
 	newHead := head.Next
 	if newHead != nil {
-		newHead.prev = nil
+		newHead.Prev = nil
 	}
 	head.Next = nil
 	return newHead
 }
 
-func DeleteTailOfDoubleLinkdList(head *dNode) *dNode {
+func DeleteTailOfDoubleLinkdList(head *DNode) *DNode {
 	if head == nil || head.Next == nil {
 		return nil
 	}
@@ -100,32 +111,32 @@ func DeleteTailOfDoubleLinkdList(head *dNode) *dNode {
 	return head
 }
 
-func CreateCircularDoublyLinkedList() *dNode {
-	head := getDNode(10)
-	temp1 := getDNode(20)
-	temp2 := getDNode(30)
-	head.prev = temp2
+func CreateCircularDoublyLinkedList() *DNode {
+	head := GetDNode(10)
+	temp1 := GetDNode(20)
+	temp2 := GetDNode(30)
+	head.Prev = temp2
 	head.Next = temp1
 
-	temp1.prev = head
+	temp1.Prev = head
 	temp1.Next = temp2
 
-	temp2.prev = temp1
+	temp2.Prev = temp1
 	temp2.Next = head
 	return head
 }
 
-func InsertAtTheBeginOfCircilarDoubleLinkedList(head *dNode, Data int) *dNode {
-	newHead := getDNode(Data)
-	headPrev := head.prev
-	head.prev = newHead
-	newHead.prev = headPrev
+func InsertAtTheBeginOfCircilarDoubleLinkedList(head *DNode, Data int) *DNode {
+	newHead := GetDNode(Data)
+	headPrev := head.Prev
+	head.Prev = newHead
+	newHead.Prev = headPrev
 	newHead.Next = head
 	headPrev.Next = newHead
 	return newHead
 }
 
-func TraverseCircularDoublyLinkedList(head *dNode) {
+func TraverseCircularDoublyLinkedList(head *DNode) {
 
 	temp := head.Next
 

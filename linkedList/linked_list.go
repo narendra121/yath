@@ -21,9 +21,9 @@ func getNode(inp int) *Node {
 //get simple linked list
 func CreateSingleLinkedList() *Node {
 	head := getNode(10)
-	head.Next = getNode(20)
+	head.Next = getNode(21)
 	head.Next.Next = getNode(30)
-	head.Next.Next.Next = getNode(40)
+	head.Next.Next.Next = getNode(43)
 	head.Next.Next.Next.Next = getNode(50)
 	head.Next.Next.Next.Next.Next = getNode(60)
 

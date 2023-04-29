@@ -70,6 +70,7 @@ func ReverseSingleLinkedList(head *Node) *Node {
 }
 
 func RemoveDuplicsFromSingleLinkdList(head *Node, present *Node) *Node {
+
 	if present.Next == nil || head.Next == nil {
 		return head
 	}
@@ -121,3 +122,72 @@ func ReverseSLinkedListAtKGroups(head *Node, k int) *Node {
 	}
 	return head
 }
+
+func DetectLoopInSLinkdList(head *Node) bool {
+	tortoise, flash := head, head
+	for flash != nil && flash.Next != nil {
+		tortoise = tortoise.Next
+		flash = flash.Next.Next
+		if tortoise == flash {
+			return true
+		}
+	}
+	return false
+}
+
+func DetectTheLoopAndReomve(head *Node) *Node {
+	tortoise, flash := head, head
+	for flash != nil && flash.Next != nil {
+		tortoise = tortoise.Next
+		flash = flash.Next.Next
+		if tortoise == flash {
+			break
+		}
+	}
+	if flash != tortoise {
+		return head
+	}
+	tortoise = head
+	for tortoise.Next != flash.Next {
+		tortoise = tortoise.Next
+		flash = flash.Next
+
+	}
+	flash.Next = nil
+	return head
+}
+
+func SegregateEvenAndOddInSLinkedList(head *Node) *Node {
+	var evenStart, evenEnd, oddStart, oddEnd *Node
+	for cur := head; cur != nil; cur = cur.Next {
+		temp := cur.Data
+		if temp%2 == 0 {
+			if evenStart == nil {
+				evenStart, evenEnd = cur, cur
+			} else {
+				evenEnd.Next = cur
+				evenEnd = evenEnd.Next
+			}
+		} else {
+			if oddStart == nil {
+				oddStart, oddEnd = cur, cur
+			} else {
+				oddEnd.Next = cur
+				oddEnd = oddEnd.Next
+			}
+		}
+	}
+	if oddStart == nil || evenStart == nil {
+
+		return head
+	}
+	evenEnd.Next = oddStart
+	oddEnd.Next = nil
+	return evenStart
+}
+
+func LRUCacheDesign() { //least recently used
+	
+}
+
+// 1 2 4
