@@ -27,6 +27,6 @@ func main() {
 	// linkedList.TraverseDoubleLinkedList(linkedList.CreateDoubleLinkedListFromArray([]int{1, 2, 3, 4}))
 	// fmt.Println(arrays.PrintLeadersOfArray([]int{1, 2, 3, 4, 5}))
 
-	fmt.Println(arrays.MaximumDifferenceInArray([]int{1, 8, 3, 6, 5}))
-
+	// fmt.Println(arrays.MaximumDifferenceInArray([]int{1, 8, 3, 6, 5}))
+	fmt.Println(arrays.IsSubArraySumEql([]int{4, 8, 12, 5}, 20))
 }

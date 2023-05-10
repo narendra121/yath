@@ -145,3 +145,106 @@ func MaximumDifferenceInArray(arr []int) int { //[]int{1, 8, 3, 6, 5}    o/p 7
 	}
 	return maxDiff
 }
+
+func ProfitStock(price []int, start, end int) int {
+	if end <= start {
+		return 0
+	}
+	profit := 0
+	for i := start; i < end; i++ {
+		for j := i + 1; j <= end; j++ {
+			if price[j] > price[i] {
+				currProfit := price[j] - price[i] + ProfitStock(price, start, i-1) + ProfitStock(price, j+1, end)
+				profit = int(math.Max(float64(profit), float64(currProfit)))
+			}
+		}
+	}
+	return profit
+}
+
+func GetWaterStorage(wallsHeight []int) int {
+	res := 0
+	leftMax, rightMax := make([]int, len(wallsHeight)), make([]int, len(wallsHeight))
+	leftMax[0] = wallsHeight[0]
+	for i := 1; i < len(wallsHeight); i++ {
+		leftMax[i] = int(math.Max(float64(wallsHeight[i]), float64(leftMax[i-1])))
+	}
+	rightMax[len(wallsHeight)-1] = wallsHeight[len(wallsHeight)-1]
+	for i := len(wallsHeight) - 2; i >= 0; i-- {
+		rightMax[i] = int(math.Max(float64(wallsHeight[i]), float64(rightMax[i+1])))
+	}
+	for i := 1; i < len(wallsHeight); i++ {
+		res = res + (int(math.Min(float64(leftMax[i]), float64(rightMax[i]))) - wallsHeight[i])
+	}
+	fmt.Println(leftMax, rightMax)
+	return res
+}
+func CountBinary(binSl []int) int {
+	curr, res := 0, 0
+	for i := 0; i < len(binSl); i++ {
+		if binSl[i] == 0 {
+			curr = 0
+		} else {
+			curr++
+			res = int(math.Max(float64(curr), float64(res)))
+		}
+	}
+	return res
+}
+
+func MaxSumOfSubArray(arr []int) int {
+	res := arr[0]
+	maxEnding := arr[0]
+	for i := 1; i < len(arr); i++ {
+		maxEnding = int(math.Max(float64(maxEnding)+float64(arr[i]), float64(arr[i])))
+		res = int(math.Max(float64(res), float64(maxEnding)))
+	}
+	return res
+}
+
+func MaxLengthOfAlternatArray(arr []int) int { // even odd even odd //odd even odd even
+	cur, res := 0, 0
+	for i := 1; i < len(arr); i++ {
+		if (arr[i]%2 == 0 && arr[i-1]%2 != 0) || (arr[i]%2 != 0 && arr[i-1]%2 == 0) {
+			cur++
+			res = int(math.Max(float64(res), float64(cur)))
+		} else {
+			cur = 1
+		}
+	}
+	return res
+}
+
+func MaxAppearingElement(left, right []int) int { // which element appeared most range should be between 1,100
+	freq := make([]int, 101)
+	for i := 0; i < len(left); i++ {
+		freq[left[i]]++
+		freq[right[i]+1]--
+
+	}
+
+	res := 0
+	for i := 1; i < 100; i++ {
+		freq[i] = freq[i-1] + freq[i]
+		if freq[i] > freq[res] {
+
+			res = i
+		}
+	}
+	return res
+}
+
+func IsSubArraySumEql(arr []int, sum int) bool {
+	curr, s := 0, 0
+	for i := 0; i < len(arr); i++ {
+		curr += arr[i]
+		for sum < curr {
+			curr -= arr[s]
+			s++
+		}
+		if curr == sum {
+			return true
+		}
+	}
+	return false
+}
