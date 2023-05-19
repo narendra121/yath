@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"yath/arrays"
+	"yath/searching"
 )
 
 func main() {
@@ -28,5 +28,7 @@ func main() {
 	// fmt.Println(arrays.PrintLeadersOfArray([]int{1, 2, 3, 4, 5}))
 
 	// fmt.Println(arrays.MaximumDifferenceInArray([]int{1, 8, 3, 6, 5}))
-	fmt.Println(arrays.IsSubArraySumEql([]int{4, 8, 12, 5}, 20))
+	// fmt.Println(searching.GetThePeakElement([]int{5, 10, 12, 90, 18, 30, 76, 60}))
+	// fmt.Println(searching.IsAnySumEqual([]int{1, 2, 5, 8}, 3))
+	fmt.Println(searching.IsAnySumEqualTriplet([]int{1, 2, 5, 8}, 1))
 }
