@@ -1,8 +1,7 @@
 package main
 
 import (
-	"fmt"
-	"yath/searching"
+	"yath/sorting"
 )
 
 func main() {
@@ -30,5 +29,9 @@ func main() {
 	// fmt.Println(arrays.MaximumDifferenceInArray([]int{1, 8, 3, 6, 5}))
 	// fmt.Println(searching.GetThePeakElement([]int{5, 10, 12, 90, 18, 30, 76, 60}))
 	// fmt.Println(searching.IsAnySumEqual([]int{1, 2, 5, 8}, 3))
-	fmt.Println(searching.IsAnySumEqualTriplet([]int{1, 2, 5, 8}, 1))
+	// fmt.Println(sorting.MergeSort([]int{3, 3, 6, 9}, []int{1, 2, 3, 4, 5, 6}))
+	// m := []int{-12, 18, -10, 15, -12}
+	sorting.HeapSort([]int{10, 15, 50, 4, 20})
+	// sorting.MeetingMaxGuests([]int{900, 600, 700}, []int{1000, 800, 730})
+
 }
