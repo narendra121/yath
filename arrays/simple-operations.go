@@ -248,3 +248,11 @@ func IsSubArraySumEql(arr []int, sum int) bool {
 	}
 	return false
 }
+
+func FillSlice(length, val int) []int {
+	x := make([]int, length)
+	for i := 0; i < length; i++ {
+		x[i] = val
+	}
+	return x
+}

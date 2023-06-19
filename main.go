@@ -1,7 +1,8 @@
 package main
 
 import (
-	"yath/sorting"
+	"fmt"
+	"yath/string_prblms"
 )
 
 func main() {
@@ -31,7 +32,10 @@ func main() {
 	// fmt.Println(searching.IsAnySumEqual([]int{1, 2, 5, 8}, 3))
 	// fmt.Println(sorting.MergeSort([]int{3, 3, 6, 9}, []int{1, 2, 3, 4, 5, 6}))
 	// m := []int{-12, 18, -10, 15, -12}
-	sorting.HeapSort([]int{10, 15, 50, 4, 20})
+	// sorting.HeapSort([]int{10, 15, 50, 4, 20})
 	// sorting.MeetingMaxGuests([]int{900, 600, 700}, []int{1000, 800, 730})
+	// matrix.PrintSpiral([][]int{{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}, {13, 14, 15, 16}})
+	// fmt.Println(matrix.SearchInRowWiseAndCloumnWiseSortedMatrix([][]int{{10, 20, 30, 40}, {15, 25, 35, 45}, {27, 29, 37, 48}, {32, 33, 39, 50}}, 39))
+	fmt.Println(string_prblms.LongestSistinctSubStr("abcadbd"))
 
 }
