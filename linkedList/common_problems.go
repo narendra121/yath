@@ -1,7 +1,7 @@
 package linkedList
 
 func SortedInsertInLinkedList(head *Node, Data int) *Node {
-	newNode := getNode(Data)
+	newNode := GetNode(Data)
 
 	if head == nil {
 		return head

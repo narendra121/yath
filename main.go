@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"yath/string_prblms"
+	"yath/queue"
 )
 
 func main() {
@@ -36,6 +36,73 @@ func main() {
 	// sorting.MeetingMaxGuests([]int{900, 600, 700}, []int{1000, 800, 730})
 	// matrix.PrintSpiral([][]int{{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}, {13, 14, 15, 16}})
 	// fmt.Println(matrix.SearchInRowWiseAndCloumnWiseSortedMatrix([][]int{{10, 20, 30, 40}, {15, 25, 35, 45}, {27, 29, 37, 48}, {32, 33, 39, 50}}, 39))
-	fmt.Println(string_prblms.LongestSistinctSubStr("abcadbd"))
+	// fmt.Println(string_prblms.LongestSistinctSubStr("abcadbd"))
+	// var myStack stacks.LinkedStack
+	// myStack.Init()
+	// fmt.Println(myStack.Size())
 
+	// myStack.Push(10)
+	// myStack.Push(20)
+	// myStack.IsEmpty()
+	// fmt.Println(myStack.Peek())
+	// fmt.Println(myStack.Pop())
+	// fmt.Println(myStack.Peek())
+	// fmt.Println(myStack.Size())
+
+	// fmt.Println(leetcode.SingleNumber([]int{-2, -2, 1, 1, 4, 1, 4, 4, -4, -2}))
+	// stacks.StockSpan([]int{60, 10, 20, 15, 35, 50}, 6)
+
+	queue.ArrQueue.Init(0, 5)
+	queue.ArrQueue.EnQueue(1)
+	queue.ArrQueue.EnQueue(2)
+	queue.ArrQueue.EnQueue(3)
+	queue.ArrQueue.EnQueue(4)
+	queue.ArrQueue.EnQueue(4)
+	queue.ArrQueue.EnQueue(4)
+	fmt.Println(queue.ArrQueue) //
+	queue.ArrQueue.DeQueue()
+	fmt.Println(queue.ArrQueue) //
+	queue.ArrQueue.DeQueue()
+	fmt.Println(queue.ArrQueue) //
+	queue.ArrQueue.EnQueue(5)
+	queue.ArrQueue.DeQueue()
+	fmt.Println(queue.ArrQueue) //
+	fmt.Println()
+	fmt.Println()
+	fmt.Println()
+	// var queueTemp1 queue.Queue
+	// queueTemp1.Init(0, 5)
+	// queueTemp1.RearEnQueue(1)
+	// queueTemp1.RearEnQueue(2)
+	// queueTemp1.RearEnQueue(3)
+	// queueTemp1.RearEnQueue(4)
+	// queueTemp1.RearEnQueue(4)
+	// queueTemp1.RearEnQueue(4)
+	// fmt.Println(queueTemp1)
+	// queueTemp1.FrontDeQueue()
+	// fmt.Println(queueTemp1)
+	// queueTemp1.FrontDeQueue()
+	// fmt.Println(queueTemp1)
+	// queueTemp1.RearEnQueue(5)
+	// queueTemp1.FrontDeQueue()
+	// fmt.Println(queueTemp1)
 }
+
+// I             1
+// V             5
+// X             10
+// L             50
+// C             100
+// D             500
+// M
+
+// if sl[int(s[i])] > sl[int(s[i-1])] {
+// 	res += sl[int(s[i])] - tmp
+// 	tmp = 0
+// } else if sl[int(s[i])] <= sl[int(s[i-1])] {
+// 	res += sl[int(s[i])]
+// } else {
+// 	tmp += sl[int(s[i])]
+// 	// res = res + (sl[int(s[i])])
+// }
+// tmp = 0

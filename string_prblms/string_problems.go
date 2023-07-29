@@ -247,10 +247,10 @@ func LexicoGraphicRank(s string) int {
 
 /*
 IP:= abcadbd
-OP:= bcad
+OP:= 4
 
 */
-func LongestSistinctSubStr(s string) int {
+func LongestDistinctSubStrLen(s string) int {
 	sLength, res := len(s), 0
 	prev := arrays.FillSlice(256, -1)
 	i := 0

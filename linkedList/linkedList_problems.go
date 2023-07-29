@@ -11,7 +11,7 @@ type Node struct {
 }
 
 //It will create the node from the input value
-func getNode(inp int) *Node {
+func GetNode(inp int) *Node {
 	return &Node{
 		Data: inp,
 		Next: nil,
@@ -20,12 +20,12 @@ func getNode(inp int) *Node {
 
 //get simple linked list
 func CreateSingleLinkedList() *Node {
-	head := getNode(10)
-	head.Next = getNode(21)
-	head.Next.Next = getNode(30)
-	head.Next.Next.Next = getNode(43)
-	head.Next.Next.Next.Next = getNode(50)
-	head.Next.Next.Next.Next.Next = getNode(60)
+	head := GetNode(10)
+	head.Next = GetNode(21)
+	head.Next.Next = GetNode(30)
+	head.Next.Next.Next = GetNode(43)
+	head.Next.Next.Next.Next = GetNode(50)
+	head.Next.Next.Next.Next.Next = GetNode(60)
 
 	return head
 }
@@ -47,13 +47,13 @@ func TraverseSingleLinkedList(head *Node) {
 }
 
 func InsertAtTheBeginOfSingleLinkdList(head *Node, inp int) *Node { //O(n)
-	temp := getNode(inp)
+	temp := GetNode(inp)
 	temp.Next = head
 	return temp
 }
 
 func InsertAtTheEndOfLinkdList(head *Node, inp int) *Node { //O(n)
-	temp := getNode(inp)
+	temp := GetNode(inp)
 	if head == nil {
 		return temp
 	}
@@ -80,7 +80,7 @@ func DeleteTailOfTheSingleLinkdList(head *Node) *Node {
 	return head
 }
 func InsertValueAtKthNodeSingleLinkdList(head *Node, position, Data int) *Node {
-	temp := getNode(Data)
+	temp := GetNode(Data)
 	if position == 1 {
 		temp.Next = head
 		return temp
@@ -112,10 +112,10 @@ func SearchInSingleLinkdList(position int, head *Node) int {
 
 //10 5 20 15
 func CreateSingleCircularLinkdList() *Node {
-	head := getNode(10)
-	temp1 := getNode(5)
-	temp2 := getNode(20)
-	temp3 := getNode(15)
+	head := GetNode(10)
+	temp1 := GetNode(5)
+	temp2 := GetNode(20)
+	temp3 := GetNode(15)
 	head.Next = temp1
 	head.Next.Next = temp2
 	head.Next.Next.Next = temp3
@@ -138,7 +138,7 @@ func TraverseSingleCircularLinkedList(head *Node) {
 func InsertAtBeginOfCircularSingleLinkedList(head *Node, Data int) *Node {
 
 	temp := head
-	newHead := getNode(Data)
+	newHead := GetNode(Data)
 	newHead.Next = head
 	if head == nil {
 		temp.Next = temp
@@ -152,7 +152,7 @@ func InsertAtBeginOfCircularSingleLinkedList(head *Node, Data int) *Node {
 }
 
 func InsertAtTheEndOfTheCircularSingleLinkedList(head *Node, Data int) *Node {
-	newTail := getNode(Data)
+	newTail := GetNode(Data)
 	newTail.Next = head
 	temp := head
 	if head == nil {

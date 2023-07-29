@@ -55,6 +55,8 @@ func IndexOfLargestElementOfArray(array [5]int) int {
 	}
 	return currLargeIdx
 }
+
+//[]int{1,3,5,3,5,78,99,9}
 func SecondLargestIndex(arr []int, n int) int {
 	res, largest := -1, 0
 	for i := 1; i < n; i++ {
