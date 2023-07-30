@@ -28,14 +28,14 @@ func (q *efficientArrayQueue) IsFull() bool {
 func (q *efficientArrayQueue) IsEmpty() bool {
 	return q.Len == 0
 }
-func (q *efficientArrayQueue) GetRear() int {
+func (q *efficientArrayQueue) GetRear() interface{} {
 	if q.IsEmpty() {
 		return -1
 	}
 	return (q.Front + q.Len - 1) % q.Cap
 }
 
-func (q *efficientArrayQueue) GetFront() int {
+func (q *efficientArrayQueue) GetFront() interface{} {
 	if q.IsEmpty() {
 		return -1
 	}
@@ -45,7 +45,7 @@ func (q *efficientArrayQueue) EnQueue(x int) {
 	if q.IsFull() {
 		return
 	}
-	q.Rear = (q.GetRear() + 1) % q.Cap
+	q.Rear = (q.GetRear().(int) + 1) % q.Cap
 	q.Arr[q.Rear] = x
 	q.Len++
 }
@@ -55,4 +55,7 @@ func (q *efficientArrayQueue) DeQueue() {
 	}
 	q.Front = (q.Front + 1) % q.Cap
 	q.Len--
+}
+func (q *efficientArrayQueue) GetQueue() interface{} {
+	return q.Arr
 }

@@ -13,6 +13,7 @@ type Queue interface {
 	IsEmpty() bool
 	EnQueue(x int)
 	DeQueue()
-	GetFront() int
-	GetRear() int
+	GetFront() interface{}
+	GetRear() interface{}
+	GetQueue() interface{}
 }

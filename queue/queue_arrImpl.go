@@ -10,7 +10,7 @@ var QueueArrImpl Queue = &arrayQueue{}
 
 func (q *arrayQueue) Init(len, cap int) {
 	q.Arr = make([]int, cap)
-	q.Len = len
+	q.Len = 0
 	q.Cap = cap
 }
 
@@ -46,16 +46,19 @@ func (q *arrayQueue) DeQueue() {
 	q.Len--
 }
 
-func (q *arrayQueue) GetFront() int {
+func (q *arrayQueue) GetFront() interface{} {
 	if q.IsEmpty() {
 		return -1
 	}
 	return 0
 }
 
-func (q *arrayQueue) GetRear() int {
+func (q *arrayQueue) GetRear() interface{} {
 	if q.IsEmpty() {
 		return -1
 	}
 	return q.Len
+}
+func (q *arrayQueue) GetQueue() interface{} {
+	return q.Arr
 }
