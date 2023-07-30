@@ -2,7 +2,7 @@ package stacks
 
 import (
 	"math"
-	"yath/linkedList"
+	linkedList "yath/10_linkedList"
 )
 
 type linkedStack struct {

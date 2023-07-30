@@ -1,4 +1,4 @@
-package check
+package maths
 
 func DigiCount(x int) int {
 	if x < 0 {

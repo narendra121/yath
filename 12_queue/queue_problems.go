@@ -1,7 +1,7 @@
 package queue
 
 import (
-	"yath/stacks"
+	"yath/11_stacks"
 )
 
 func ReverseQueueUsingStack(queue Queue) Queue {

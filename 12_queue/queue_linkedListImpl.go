@@ -1,6 +1,6 @@
 package queue
 
-import "yath/linkedList"
+import "yath/10_linkedList"
 
 type queueLinkedList struct {
 	front *linkedList.Node

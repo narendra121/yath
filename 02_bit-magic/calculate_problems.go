@@ -1,9 +1,9 @@
-package calc
+package bitmagic
 
 import (
 	"math"
 	"sort"
-	"yath/check"
+	maths "yath/01_maths"
 )
 
 var bit32Table [256]int
@@ -60,7 +60,7 @@ func Divisors(num int) []int {
 func PrimeNumbers(num int) []int {
 	result := make([]int, 0)
 	for i := 1; i <= num; i++ {
-		if check.IsPrime(i) {
+		if maths.IsPrime(i) {
 			result = append(result, i)
 		}
 	}
