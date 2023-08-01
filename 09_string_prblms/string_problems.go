@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"math"
 	"strings"
-	"yath/arrays"
-	"yath/calc"
+	bitmagic "yath/02_bit-magic"
+	arrays "yath/04_arrays"
 )
 
 func CountEach(s string) {
@@ -226,7 +226,7 @@ O/P:=6
 func LexicoGraphicRank(s string) int {
 	res := 1
 	sLength := len(s)
-	mul := calc.Factorial(sLength)
+	mul := bitmagic.Factorial(sLength)
 	count := make([]int, 256)
 	for i := 0; i < sLength; i++ {
 		count[s[i]]++

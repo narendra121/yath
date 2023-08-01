@@ -1,13 +1,15 @@
 package dequeue
 
 type DoublyEndedQueue interface {
+	Init(cap int)
+	Size() int
+	IsFull() bool
+	IsEmpty() bool
 	InsertFront(x interface{})
 	InsertRear(x interface{})
-	DeleteFromnt()
+	DeleteFront()
 	DeleteRear()
 	GetFront() interface{}
 	GetRear() interface{}
-	Isfull() bool
-	IsEmpty() bool
-	Size() int
+	GetArray() interface{}
 }

@@ -1,15 +1,12 @@
 package main
 
-import "yath/queue"
+import (
+	"fmt"
+	dequeue "yath/13_deQueue"
+)
 
 func main() {
-	q := queue.QueueArrImpl
-	q.Init(10, 12)
-	q.EnQueue(1)
-	q.EnQueue(2)
-	q.EnQueue(3)
-	q.EnQueue(4)
-	q.EnQueue(5)
-	q.EnQueue(6)
-	queue.ReverseQueueUsingStack(q)
+	// dequeue.MaximumsInallSubArraysOfSizeK([]int{20, 40, 30, 10, 60}, 3)
+	m := dequeue.FirstCircularTourNaive([]int{4, 8, 7, 4}, []int{6, 5, 3, 5})
+	fmt.Println(m)
 }
