@@ -7,42 +7,40 @@ InsertRear:- rear=(rear+1)%cap
 DeleteRear:- rear=(rear-1+cap)%cap
 */
 
-type deQueue struct {
-	arr   []int
+type DeQueueArrImpl struct {
+	arr   []interface{}
 	front int
 	cap   int
 	size  int
 }
 
-var DeQueueArrImpl DoublyEndedQueue = &deQueue{}
-
-func (d *deQueue) Init(cap int) {
-	d.arr = make([]int, cap)
+func (d *DeQueueArrImpl) Init(cap int) {
+	d.arr = make([]interface{}, cap)
 	d.cap = cap
 	d.front = 0
 	d.size = 0
 }
 
-func (d *deQueue) Size() int {
+func (d *DeQueueArrImpl) Size() int {
 	return d.size
 }
 
-func (d *deQueue) IsFull() bool {
+func (d *DeQueueArrImpl) IsFull() bool {
 	return d.size == d.cap
 }
 
-func (d *deQueue) IsEmpty() bool {
+func (d *DeQueueArrImpl) IsEmpty() bool {
 	return d.size == 0
 }
 
-func (d *deQueue) GetFront() interface{} {
+func (d *DeQueueArrImpl) GetFront() interface{} {
 	if d.IsEmpty() {
 		return -1
 	}
 	return d.arr[d.front]
 }
 
-func (d *deQueue) GetRear() interface{} {
+func (d *DeQueueArrImpl) GetRear() interface{} {
 	if d.IsEmpty() {
 		return -1
 	}
@@ -50,42 +48,42 @@ func (d *deQueue) GetRear() interface{} {
 	return d.arr[rear]
 }
 
-func (d *deQueue) InsertFront(x interface{}) {
+func (d *DeQueueArrImpl) InsertFront(x interface{}) {
 	if d.IsFull() {
 		return
 	}
 	d.front = (d.front + d.cap - 1) % d.cap
-	d.arr[d.front] = x.(int)
+	d.arr[d.front] = x
 	d.size++
 }
 
-func (d *deQueue) InsertRear(x interface{}) {
+func (d *DeQueueArrImpl) InsertRear(x interface{}) {
 	if d.IsFull() {
 		return
 	}
 	rear := (d.front + d.size) % d.cap
-	d.arr[rear] = x.(int)
+	d.arr[rear] = x
 	d.size++
 }
 
-func (d *deQueue) DeleteFront() {
+func (d *DeQueueArrImpl) DeleteFront() {
 	if d.IsEmpty() {
 		return
 	}
-	d.arr[d.front] = 0
+	d.arr[d.front] = nil
 	d.front = (d.front + 1) % d.cap
 	d.size--
 }
 
-func (d *deQueue) DeleteRear() {
+func (d *DeQueueArrImpl) DeleteRear() {
 	if d.IsEmpty() {
 		return
 	}
 	rear := (d.front + d.size - 1) % d.cap
-	d.arr[rear] = 0
+	d.arr[rear] = nil
 	d.size--
 }
 
-func (d *deQueue) GetArray() interface{} {
+func (d *DeQueueArrImpl) GetArray() interface{} {
 	return d.arr
 }

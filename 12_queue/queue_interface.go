@@ -11,7 +11,7 @@ type Queue interface {
 	Size() int
 	IsFull() bool
 	IsEmpty() bool
-	EnQueue(x int)
+	EnQueue(x interface{})
 	DeQueue()
 	GetFront() interface{}
 	GetRear() interface{}

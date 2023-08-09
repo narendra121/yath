@@ -11,33 +11,34 @@ out:
 60
 */
 func MaximumsInallSubArraysOfSizeK(arr []int, k int) {
-	DeQueueArrImpl.Init(k)
+	dq := DeQueueArrImpl{}
+	dq.Init(k)
 
 	for i := 0; i < k; i++ {
-		f := DeQueueArrImpl.GetRear().(int)
-		for !DeQueueArrImpl.IsEmpty() && arr[i] >= arr[f] {
-			DeQueueArrImpl.DeleteRear()
-			f = DeQueueArrImpl.GetRear().(int)
+		f := dq.GetRear().(int)
+		for !dq.IsEmpty() && arr[i] >= arr[f] {
+			dq.DeleteRear()
+			f = dq.GetRear().(int)
 		}
-		DeQueueArrImpl.InsertRear(i)
+		dq.InsertRear(i)
 	}
 
 	for i := k; i < len(arr); i++ {
-		fmt.Println(arr[DeQueueArrImpl.GetFront().(int)])
+		fmt.Println(arr[dq.GetFront().(int)])
 
-		for !DeQueueArrImpl.IsEmpty() && DeQueueArrImpl.GetFront().(int) <= i-k {
-			DeQueueArrImpl.DeleteFront()
+		for !dq.IsEmpty() && dq.GetFront().(int) <= i-k {
+			dq.DeleteFront()
 		}
 
-		f := DeQueueArrImpl.GetRear().(int)
-		for !DeQueueArrImpl.IsEmpty() && arr[i] >= arr[f] {
-			DeQueueArrImpl.DeleteRear()
-			f = DeQueueArrImpl.GetRear().(int)
+		f := dq.GetRear().(int)
+		for !dq.IsEmpty() && arr[i] >= arr[f] {
+			dq.DeleteRear()
+			f = dq.GetRear().(int)
 		}
 
-		DeQueueArrImpl.InsertRear(i)
+		dq.InsertRear(i)
 	}
-	fmt.Println(arr[DeQueueArrImpl.GetFront().(int)])
+	fmt.Println(arr[dq.GetFront().(int)])
 }
 
 /*

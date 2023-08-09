@@ -9,7 +9,7 @@ Peek -- See the top element
 type Stack interface {
 	Init()
 	Push(i interface{})
-	Pop() interface{}
+	Pop()
 	Peek() interface{}
 	Size() int
 	IsEmpty() bool

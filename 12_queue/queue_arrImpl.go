@@ -1,39 +1,37 @@
 package queue
 
-type arrayQueue struct {
+type QueueArrImpl struct {
 	Len int
 	Cap int
-	Arr []int
+	Arr []interface{}
 }
 
-var QueueArrImpl Queue = &arrayQueue{}
-
-func (q *arrayQueue) Init(len, cap int) {
-	q.Arr = make([]int, cap)
+func (q *QueueArrImpl) Init(len, cap int) {
+	q.Arr = make([]interface{}, cap)
 	q.Len = 0
 	q.Cap = cap
 }
 
-func (q *arrayQueue) Size() int {
+func (q *QueueArrImpl) Size() int {
 	return q.Len
 }
 
-func (q *arrayQueue) IsFull() bool {
+func (q *QueueArrImpl) IsFull() bool {
 	return q.Len == q.Cap
 }
 
-func (q *arrayQueue) IsEmpty() bool {
+func (q *QueueArrImpl) IsEmpty() bool {
 	return q.Len == 0
 }
 
-func (q *arrayQueue) EnQueue(x int) {
+func (q *QueueArrImpl) EnQueue(x interface{}) {
 	if q.IsFull() {
 		return
 	}
 	q.Arr[q.Len] = x
 	q.Len++
 }
-func (q *arrayQueue) DeQueue() {
+func (q *QueueArrImpl) DeQueue() {
 	if q.IsEmpty() {
 		return
 	}
@@ -46,19 +44,19 @@ func (q *arrayQueue) DeQueue() {
 	q.Len--
 }
 
-func (q *arrayQueue) GetFront() interface{} {
+func (q *QueueArrImpl) GetFront() interface{} {
 	if q.IsEmpty() {
 		return -1
 	}
 	return 0
 }
 
-func (q *arrayQueue) GetRear() interface{} {
+func (q *QueueArrImpl) GetRear() interface{} {
 	if q.IsEmpty() {
 		return -1
 	}
 	return q.Len
 }
-func (q *arrayQueue) GetQueue() interface{} {
+func (q *QueueArrImpl) GetQueue() interface{} {
 	return q.Arr
 }

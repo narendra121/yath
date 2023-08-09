@@ -1,22 +1,20 @@
 package queue
 
-import "yath/10_linkedList"
+import linkedList "yath/10_linkedList"
 
-type queueLinkedList struct {
+type QueueLinkedListImpl struct {
 	front *linkedList.Node
 	rear  *linkedList.Node
 	size  int
 }
 
-var QueueLinkedListImpl Queue = &queueLinkedList{}
-
-func (q *queueLinkedList) Init(dummy1, dummy2 int) {
+func (q *QueueLinkedListImpl) Init(dummy1, dummy2 int) {
 	q.front = &linkedList.Node{}
 	q.rear = &linkedList.Node{}
 	q.size = 0
 }
-func (q *queueLinkedList) EnQueue(x int) {
-	temp := linkedList.GetNode(x)
+func (q *QueueLinkedListImpl) EnQueue(x interface{}) {
+	temp := linkedList.GetNode(x.(int))
 	if q.front == nil {
 		q.front, q.rear = temp, temp
 		return
@@ -25,7 +23,7 @@ func (q *queueLinkedList) EnQueue(x int) {
 	q.rear = temp
 	q.size++
 }
-func (q *queueLinkedList) DeQueue() {
+func (q *QueueLinkedListImpl) DeQueue() {
 	if q.front == nil {
 		return
 	}
@@ -35,24 +33,24 @@ func (q *queueLinkedList) DeQueue() {
 	}
 	q.size--
 }
-func (q *queueLinkedList) GetFront() interface{} {
+func (q *QueueLinkedListImpl) GetFront() interface{} {
 	return q.front
 }
-func (q *queueLinkedList) GetRear() interface{} {
+func (q *QueueLinkedListImpl) GetRear() interface{} {
 	return q.rear
 }
-func (q *queueLinkedList) IsEmpty() bool {
+func (q *QueueLinkedListImpl) IsEmpty() bool {
 	return q.front == nil
 }
 
-func (q *queueLinkedList) IsFull() bool {
+func (q *QueueLinkedListImpl) IsFull() bool {
 	//No need to implement
 	return false
 }
-func (q *queueLinkedList) Size() int {
+func (q *QueueLinkedListImpl) Size() int {
 	return q.size
 }
-func (q *queueLinkedList) GetQueue() interface{} {
+func (q *QueueLinkedListImpl) GetQueue() interface{} {
 	//No need
 	return nil
 }

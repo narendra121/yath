@@ -37,7 +37,7 @@ func isMatching(s string) bool {
 }
 
 func StockSpan(arr []int, n int) {
-	stock := StackSliceImpl
+	stock := StackSliceImpl{}
 	stock.Push(0)
 	for i := 1; i < n; i++ {
 		for !stock.IsEmpty() && arr[stock.Peek().(int)] <= arr[i] {

@@ -1,47 +1,45 @@
 package queue
 
-type efficientArrayQueue struct {
+type QueueEfficientArray struct {
 	Len   int
 	Cap   int
-	Arr   []int
+	Arr   []interface{}
 	Front int
 	Rear  int
 }
 
-var QueueEfficientArray Queue = &efficientArrayQueue{}
-
-func (q *efficientArrayQueue) Init(len, cap int) {
-	q.Arr = make([]int, cap)
+func (q *QueueEfficientArray) Init(len, cap int) {
+	q.Arr = make([]interface{}, cap)
 	q.Len = len
 	q.Cap = cap
 	q.Front = 0
 	q.Rear = 0
 }
-func (q *efficientArrayQueue) Size() int {
+func (q *QueueEfficientArray) Size() int {
 	return q.Len
 }
 
-func (q *efficientArrayQueue) IsFull() bool {
+func (q *QueueEfficientArray) IsFull() bool {
 	return q.Len == q.Cap
 }
 
-func (q *efficientArrayQueue) IsEmpty() bool {
+func (q *QueueEfficientArray) IsEmpty() bool {
 	return q.Len == 0
 }
-func (q *efficientArrayQueue) GetRear() interface{} {
+func (q *QueueEfficientArray) GetRear() interface{} {
 	if q.IsEmpty() {
 		return -1
 	}
 	return (q.Front + q.Len - 1) % q.Cap
 }
 
-func (q *efficientArrayQueue) GetFront() interface{} {
+func (q *QueueEfficientArray) GetFront() interface{} {
 	if q.IsEmpty() {
 		return -1
 	}
 	return q.Front
 }
-func (q *efficientArrayQueue) EnQueue(x int) {
+func (q *QueueEfficientArray) EnQueue(x interface{}) {
 	if q.IsFull() {
 		return
 	}
@@ -49,13 +47,13 @@ func (q *efficientArrayQueue) EnQueue(x int) {
 	q.Arr[q.Rear] = x
 	q.Len++
 }
-func (q *efficientArrayQueue) DeQueue() {
+func (q *QueueEfficientArray) DeQueue() {
 	if q.IsEmpty() {
 		return
 	}
 	q.Front = (q.Front + 1) % q.Cap
 	q.Len--
 }
-func (q *efficientArrayQueue) GetQueue() interface{} {
+func (q *QueueEfficientArray) GetQueue() interface{} {
 	return q.Arr
 }

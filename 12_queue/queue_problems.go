@@ -1,11 +1,11 @@
 package queue
 
 import (
-	"yath/11_stacks"
+	stacks "yath/11_stacks"
 )
 
 func ReverseQueueUsingStack(queue Queue) Queue {
-	stack := stacks.StackSliceImpl
+	stack := stacks.StackSliceImpl{}
 	stack.Init()
 	for !queue.IsEmpty() {
 		stack.Push(queue.GetQueue().([]int)[queue.GetFront().(int)])

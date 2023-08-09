@@ -2,33 +2,31 @@ package stacks
 
 import "fmt"
 
-type sliceStack []interface{}
-
-var StackSliceImpl Stack = &sliceStack{}
-
-func (s *sliceStack) Init() {
-	*s = make([]interface{}, 0)
+type StackSliceImpl struct {
+	stack []interface{}
 }
 
-func (s *sliceStack) Push(i interface{}) {
-
-	*s = append(*s, i)
-}
-func (s *sliceStack) Pop() interface{} {
-	res := (*s)[len(*s)-1]
-	*s = (*s)[:len(*s)-1]
-	return res
+func (s *StackSliceImpl) Init() {
+	s.stack = make([]interface{}, 0)
 }
 
-func (s *sliceStack) Peek() interface{} {
-	fmt.Println(*s...)
-	return (*s)[len(*s)-1]
+func (s *StackSliceImpl) Push(i interface{}) {
+
+	s.stack = append(s.stack, i)
+}
+func (s *StackSliceImpl) Pop() {
+	s.stack = (s.stack)[:len(s.stack)-1]
 }
 
-func (s *sliceStack) Size() int {
-	return len(*s)
+func (s *StackSliceImpl) Peek() interface{} {
+	fmt.Println(s.stack...)
+	return (s.stack)[len(s.stack)-1]
 }
 
-func (s *sliceStack) IsEmpty() bool {
-	return len(*s) == 0
+func (s *StackSliceImpl) Size() int {
+	return len(s.stack)
+}
+
+func (s *StackSliceImpl) IsEmpty() bool {
+	return len(s.stack) == 0
 }
