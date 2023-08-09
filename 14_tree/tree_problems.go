@@ -471,3 +471,129 @@ func DiameterOfTree(root *treeNode) int {
 	res = int(math.Max(float64(res), float64(1+ld+rd)))
 	return int(1 + math.Max(float64(ld), float64(rd)))
 }
+
+/*
+inp []int{10, 20, 30, 40, 50},40, 50
+out 20
+*/
+func LowestLevelCommonAncestor(root *treeNode, n1, n2 int) *treeNode {
+	if root == nil {
+		return nil
+	}
+	if root.key == n1 || root.key == n2 {
+		return root
+	}
+	lca1 := LowestLevelCommonAncestor(root.left, n1, n2)
+	lca2 := LowestLevelCommonAncestor(root.right, n1, n2)
+	if lca1 != nil && lca2 != nil {
+		return root
+	}
+	if lca1 == nil {
+		return lca2
+	}
+
+	return lca1
+}
+
+/*
+inp:={10, 20, 30, 40, 50}
+out 3
+
+*/
+var burnRes int
+
+func TreeBurnTime(root *treeNode, leaf, distance int) int {
+	if root == nil {
+		return 0
+	}
+	if root.key == leaf {
+		distance = 0
+		return 1
+	}
+	lDist, rDist := -1, -1
+	lh := TreeBurnTime(root.left, leaf, lDist)
+	rh := TreeBurnTime(root.right, leaf, rDist)
+	if lDist != -1 {
+		distance = lDist + 1
+		burnRes = int(math.Max(float64(burnRes), float64(distance+rh)))
+	} else if rDist != -1 {
+		distance = rDist + 1
+		burnRes = int(math.Max(float64(burnRes), float64(distance+lh)))
+	}
+	return int(math.Max(float64(lh), float64(rh))) + 1
+}
+
+/*
+inp:= []]int{10, 20, 30, 40, 50}
+out [10 20 40 -1 -1 50 -1 -1 30 -1 -1]
+*/
+
+func SerializeTree(root *treeNode, arr *[]interface{}) {
+	if root == nil {
+		*arr = append(*arr, -1)
+		return
+	}
+	*arr = append(*arr, root.key)
+	SerializeTree(root.left, arr)
+	SerializeTree(root.right, arr)
+}
+
+/*
+inp [10 20 40 -1 -1 50 -1 -1 30 -1 -1]
+
+out &{10 0xc0000bc120 0xc0000bc240}
+*/
+var dsIdx int
+
+func DeserializeTree(arr []interface{}) *treeNode {
+	if dsIdx == len(arr) {
+		return nil
+	}
+	val := arr[dsIdx]
+	dsIdx++
+	if val == -1 {
+		return nil
+	}
+	root := NewTreeNode(val)
+	root.left = DeserializeTree(arr)
+	root.right = DeserializeTree(arr)
+	return root
+}
+
+func IterativeInOrder(root *treeNode) {
+	stack := stacks.StackSliceImpl{}
+	stack.Init()
+	curr := root
+	for curr != nil || !stack.IsEmpty() {
+		for curr != nil {
+			stack.Push(curr)
+			curr = curr.left
+		}
+		curr = stack.Peek().(*treeNode)
+		stack.Pop()
+		fmt.Println(curr.key)
+		curr = curr.right
+	}
+}
+
+func IterativePreOrder(root *treeNode) {
+	if root == nil {
+		return
+	}
+	stack := stacks.StackSliceImpl{}
+	stack.Init()
+	curr := root
+	for curr != nil || !stack.IsEmpty() {
+		for curr != nil {
+			fmt.Println(curr.key)
+			if curr.right != nil {
+				stack.Push(curr.right)
+			}
+			curr = curr.left
+		}
+		if !stack.IsEmpty() {
+			curr = stack.Peek().(*treeNode)
+			stack.Pop()
+		}
+	}
+}
