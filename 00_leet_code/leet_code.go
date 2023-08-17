@@ -4,8 +4,10 @@ import (
 	"fmt"
 	"math/rand"
 	"sort"
+	"strconv"
 	"strings"
 	"time"
+	linkedList "yath/10_linkedList"
 )
 
 func RomanToInt(s string) int {
@@ -235,4 +237,118 @@ func StartSnakesAndLaddersGame() {
 		}
 
 	}
+}
+
+func AddTwoNumbers(l1 *linkedList.Node, l2 *linkedList.Node) *linkedList.Node {
+	sum := getIntFromLinkedList(l1) + getIntFromLinkedList(l2)
+	return CreateLinkedList(strconv.Itoa(sum), len(strconv.Itoa(sum))-1)
+}
+
+func getIntFromLinkedList(l *linkedList.Node) int {
+	var reStr string
+	if l == nil {
+		return 0
+	}
+	reStr += strconv.Itoa(l.Data)
+	temp := l
+	for temp.Next != nil {
+		reStr += strconv.Itoa(temp.Next.Data)
+		temp = temp.Next
+	}
+	r, _ := strconv.Atoi(reStr)
+	return r
+}
+
+func CreateLinkedList(sum string, idx int) *linkedList.Node {
+
+	if idx < 0 {
+		return nil
+	}
+	temp, _ := strconv.Atoi(string(sum[idx]))
+
+	return &linkedList.Node{temp, CreateLinkedList(sum, idx-1)}
+}
+
+package main
+
+import (
+    "bufio"
+    "fmt"
+    "io"
+    "os"
+    "strconv"
+    "strings"
+)
+
+
+
+/*
+ * Complete the 'find_max_elements' function below.
+ *
+ * The function is expected to return an INTEGER.
+ * The function accepts INTEGER_ARRAY array as parameter.
+ */
+
+func find_max_elements(array []int32) int32 {
+n:=array[0]
+target:=array[1]
+
+dp:=make([]int,target+1)
+for  i:=int32(2);i<n-1;i++{
+    num:=array[i]
+    for i:=target;i>=num;i--{
+        dp[i]=max(dp[i],dp[i-num]+1)
+    }
+    
+}
+return int32(dp[target])
+}
+func max(a,b int)int{
+    if a>b{
+        return a
+    }
+    return b
+}
+func main() {
+    reader := bufio.NewReaderSize(os.Stdin, 16 * 1024 * 1024)
+
+    stdout, err := os.Create(os.Getenv("OUTPUT_PATH"))
+    checkError(err)
+
+    defer stdout.Close()
+
+    writer := bufio.NewWriterSize(stdout, 16 * 1024 * 1024)
+
+    arrayCount, err := strconv.ParseInt(strings.TrimSpace(readLine(reader)), 10, 64)
+    checkError(err)
+
+    var array []int32
+
+    for i := 0; i < int(arrayCount); i++ {
+        arrayItemTemp, err := strconv.ParseInt(strings.TrimSpace(readLine(reader)), 10, 64)
+        checkError(err)
+        arrayItem := int32(arrayItemTemp)
+        array = append(array, arrayItem)
+    }
+
+    result := find_max_elements(array)
+
+    fmt.Fprintf(writer, "%d\n", result)
+
+    writer.Flush()
+}
+
+func readLine(reader *bufio.Reader) string {
+    str, _, err := reader.ReadLine()
+    if err == io.EOF {
+        return ""
+    }
+
+    return strings.TrimRight(string(str), "\r\n")
+}
+
+func checkError(err error) {
+    if err != nil {
+        panic(err)
+    }
 }

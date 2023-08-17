@@ -58,13 +58,17 @@ func SumOfDigitsInNum(digiSum, inp int) int {
 	return SumOfDigitsInNum(digiSum+(inp%10), inp/10)
 }
 
+/*
+inp := 5 2 5 1
+5
+*/
 func RopeCuttingProblem(ropeSize, size1, size2, size3 float64) float64 {
 	if ropeSize == 0 {
 		return 0
 	} else if ropeSize < 0 {
 		return -1
 	}
-	res := math.Max(math.Max(RopeCuttingProblem(ropeSize-size1, size1, size2, size3), RopeCuttingProblem(ropeSize-size2, size1, size2, size3)), RopeCuttingProblem(ropeSize-size2, size1, size2, size3))
+	res := math.Max(math.Max(RopeCuttingProblem(ropeSize-size1, size1, size2, size3), RopeCuttingProblem(ropeSize-size2, size1, size2, size3)), RopeCuttingProblem(ropeSize-size3, size1, size2, size3))
 
 	if res == -1 {
 		return -1

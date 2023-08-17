@@ -22,6 +22,7 @@ func Factorial(num int) int {
 	return num * Factorial(num-1)
 }
 
+//GCD of 48 and 18 is 6
 func GCD(num1, num2 int) int {
 	if num2 == 0 {
 		return num1
@@ -72,44 +73,44 @@ func BitWiseAnd(num1, num2 int) int {
 	return num1 & num2
 }
 
-//0 0 --> 0  remaing 1
+// 0 0 --> 0  remaing 1
 func BitWiseOr(num1, num2 int) int {
 	return num1 | num2
 }
 
-//0 0 --> 0  1 1 ->0  remaing 1
+// 0 0 --> 0  1 1 ->0  remaing 1
 func BitWiseXor(num1, num2 int) int {
 	return num1 ^ num2
 }
 
-//num/2^shift
+// num/2^shift
 func BitWiseRightShift(num, shift int) int {
 	return num >> shift
 }
 
-//num*2^shift
+// num*2^shift
 func BitWiseLeftShift(num, shift int) int {
 	return num << shift
 }
 
-//Bitwise Not Available in golang
+// Bitwise Not Available in golang
 func BitWiseNotUint32(num int) uint32 {
 	return ^uint32(num)
 }
 
-//Bitwise Not Available in golang
+// Bitwise Not Available in golang
 func BitWiseNotUint8(num int) uint8 {
 	return ^uint8(num)
 }
 
-//number of 1's in binary
+// number of 1's in binary
 func SetBitsCount(num int) int {
 	return bit32Table[num&255] + bit32Table[(num>>8)&255] + bit32Table[(num>>16)&255] + bit32Table[(num>>24)]
 }
 
 /*
-	odd x^x^x^x=x
-	even x^x^x=0
+odd x^x^x^x=x
+even x^x^x=0
 */
 func Repeat(sl []int, even bool) []int {
 	res := make([]int, 0)

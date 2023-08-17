@@ -27,23 +27,28 @@ func IsPrime(num int) bool {
 		return false
 	}
 	for i := 2; i*i <= num; i++ {
-		if i != num && num%i == 0 {
+		if num%i == 0 {
 			return false
 		}
 	}
 	return true
 }
+/*
+>> right shift if left shift add zero on right side
+<< left shift
 
-//weather kth bit is 1 or not
+*/
+// weather kth bit is 1 or not
 func IsBitChanged(num, position int) bool {
 	temp := num >> (position - 1)
 	return (temp & 1) != 0
 }
 
-/*check is val can be some power of num
- 	val = 4 num =2  --> true-->2^2=4
-	val= 6  num=2   --> false
+/*
+check is val can be some power of num
 
+	 	val = 4 num =2  --> true-->2^2=4
+		val= 6  num=2   --> false
 */
 func IsPowerOf(val, num int) bool {
 	for val > 1 {
