@@ -79,15 +79,15 @@ func (b *BST) IterativeInsert(root *BST, x int) *BST {
 	return root
 }
 
-func DeleteNode(root *BST, x int) *BST {
+func (b *BST) DeleteNode(root *BST, x int) *BST {
 	if root == nil {
 		return root
 	}
 	if root.key > x {
-		root.left = DeleteNode(root.left, x)
+		root.left = b.DeleteNode(root.left, x)
 
 	} else if root.key < x {
-		root.right = DeleteNode(root.right, x)
+		root.right = b.DeleteNode(root.right, x)
 	} else {
 		if root.left == nil {
 			temp := root.right
@@ -100,10 +100,52 @@ func DeleteNode(root *BST, x int) *BST {
 		} else {
 			succ := GetSuccessor(root)
 			root.key = succ.key
-			root.right = DeleteNode(root.right, succ.key)
+			root.right = b.DeleteNode(root.right, succ.key)
 		}
 	}
 	return root
+}
+
+func (b *BST) BSTFloor(root *BST, x int) *BST {
+	var res *BST
+	for root != nil {
+		if root.key == x {
+			return root
+		} else if root.key > x {
+			root = root.left
+		} else {
+			res = root
+			root = root.right
+		}
+	}
+	return res
+}
+
+func (b *BST) BSTCeil(root *BST, x int) *BST {
+	var res *BST
+	for root != nil {
+		if root.key == x {
+			return root
+		} else if root.key < x {
+			root = root.right
+		} else {
+			res = root
+			root = res.left
+		}
+	}
+	return res
+}
+
+/*
+using Red black tree
+
+1. Every node is either red or black
+2. root is always blck
+3. no two consecutive reds
+4. Number of black from every node to all of its descandant leaves should be same
+*/
+func SelfBalancingTree() {
+
 }
 
 func GetSuccessor(node *BST) *BST {
