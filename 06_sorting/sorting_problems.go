@@ -6,7 +6,7 @@ import (
 	"sort"
 )
 
-//moving largest elements to the end
+// moving largest elements to the end
 func BubbleSort(arr []int) []int {
 	for i := 0; i < len(arr)-1; i++ {
 		swapped := false
@@ -23,8 +23,8 @@ func BubbleSort(arr []int) []int {
 	return arr
 }
 
-//move smaller element to starting theta n^2
-//not stable
+// move smaller element to starting theta n^2
+// not stable
 func SelectionSort(arr []int) []int {
 	for i := 0; i < len(arr)-1; i++ {
 		min_idx := i
@@ -39,8 +39,8 @@ func SelectionSort(arr []int) []int {
 	return arr
 }
 
-//BigO(n)
-//stable
+// BigO(n)
+// stable
 func InsertionSort(arr []int) []int {
 	for i := 1; i < len(arr); i++ {
 		key := arr[i]
@@ -54,74 +54,46 @@ func InsertionSort(arr []int) []int {
 	return arr
 }
 
-//theta (m+n)
-//sorting.MergeSort([]int{3, 3, 6, 9}, []int{1, 2, 3, 4, 5, 6}
-func MergeFunctonSort(a, b []int) []int { //all sorted array inputs
-	i, j := 0, 0
-	tmp := make([]int, 0)
-	for i < len(a) && j < len(b) {
-		if a[i] <= b[j] {
-			tmp = append(tmp, a[i])
-			i++
-		} else {
-			tmp = append(tmp, b[j])
-			j++
+// theta (m+n)
+// sorting.MergeSort([]int{3, 3, 6, 9}, []int{1, 2, 3, 4, 5, 6}
+
+func merge(left, right []int) []int {
+	result := []int{}
+
+	for len(left) > 0 || len(right) > 0 {
+		if len(left) > 0 && len(right) > 0 {
+			if left[0] <= right[0] {
+				result = append(result, left[0])
+				left = left[1:]
+			} else {
+				result = append(result, right[0])
+				right = right[1:]
+			}
+		} else if len(left) > 0 {
+			result = append(result, left[0])
+			left = left[1:]
+		} else if len(right) > 0 {
+			result = append(result, right[0])
+			right = right[1:]
 		}
 	}
-	for i < len(a) {
-		tmp = append(tmp, a[i])
-		i++
-	}
-	for j < len(b) {
-		tmp = append(tmp, b[j])
-		j++
-	}
-	return tmp
-}
-func MergeFunction(arr []int) []int {
-	mid := (len(arr) / 2)
-	n1, n2 := mid-0+1, len(arr)-1-mid
-	l, r, k := 0, 0, 0
-	left, right := make([]int, n1), make([]int, n2)
-	for i := 0; i < n1; i++ {
-		left[i] = arr[0+i]
-	}
-	for i := 0; i < n2; i++ {
-		right[i] = arr[mid+i+1]
-	}
 
-	// for len(left)
-	for l < n1 && r < n2 {
-		if left[l] <= right[r] {
-			arr[k] = left[l]
-			l++
-			k++
-		} else {
-			arr[k] = right[r]
-			r++
-			k++
-		}
-	}
-	for l < len(left) {
-		arr[k] = left[l]
-		l++
-		k++
-	}
-	for r < len(right) {
-		arr[k] = right[r]
-		r++
-		k++
-	}
-	return arr
+	return result
 }
 
-func MergeSort(arr []int, l, r int) {
-	if r > l {
-		m := l + (r-l)/2
-		MergeSort(arr, l, m)
-		MergeSort(arr, m+1, r)
-		// MergeFunction()
+func mergeSort(arr []int) []int {
+	if len(arr) <= 1 {
+		return arr
 	}
+
+	mid := len(arr) / 2
+	left := arr[:mid]
+	right := arr[mid:]
+
+	left = mergeSort(left)
+	right = mergeSort(right)
+
+	return merge(left, right)
 }
 
 func InterSection(arr1, arr2 []int) []int {
@@ -177,7 +149,7 @@ func UnionOfArrays(arr1, arr2 []int) []int {
 	return tmp
 }
 
-//Lomuto Partition
+// Lomuto Partition
 // till i all elements less that pivot , after that it should >= piviot
 func LomutoPartition(arr []int, low, height int) int {
 	var piviot int
@@ -200,8 +172,8 @@ func LomutoPartition(arr []int, low, height int) int {
 	return j + 1
 }
 
-//sorting.HoaresPartition([]int{5, 3, 8, 4, 2, 7, 1, 10}, 0, 7)
-//4
+// sorting.HoaresPartition([]int{5, 3, 8, 4, 2, 7, 1, 10}, 0, 7)
+// 4
 func HoaresPartition(arr []int, low, length int) int {
 	piviot := arr[low]
 	i, j := low-1, length+1
@@ -237,7 +209,7 @@ func QuickSortUsingLomuto(arr []int, l, h int) {
 
 }
 
-//O(n2)
+// O(n2)
 func KtSmallestElement(arr []int, n, k int) int {
 	l, h := 0, n-1
 	for l <= h {
@@ -253,8 +225,8 @@ func KtSmallestElement(arr []int, n, k int) int {
 	return -1
 }
 
-//inp  []int{2000, 49, 700, 500, 1}
-//out 48
+// inp  []int{2000, 49, 700, 500, 1}
+// out 48
 func MinimumDiffInArray(arr []int) int {
 	sort.Ints(arr)
 	res := math.MaxInt
@@ -327,7 +299,8 @@ func ComparatorSort(arr []Interval) {
 O(nlogn)
 input - []sorting.Interval{sorting.Interval{5, 10},sorting.Interval{3, 15},sorting.Interval{18, 30},sorting.Interval{2, 7}}
 output  2 15
-		18 30
+
+	18 30
 */
 func MergeOverlapIntervals(arr []Interval) {
 	ComparatorSort(arr)
@@ -392,7 +365,7 @@ func maxHeapify(arr []int, len, i int) {
 
 func HeapSort(arr []int) {
 	BuildHeap(arr, len(arr))
-	fmt.Println(arr,len(arr))
+	fmt.Println(arr, len(arr))
 	for i := len(arr) - 1; i >= 1; i-- {
 		arr[0], arr[i] = arr[i], arr[0]
 		maxHeapify(arr, i, 0)

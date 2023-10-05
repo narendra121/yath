@@ -1,6 +1,8 @@
 package heap
 
-import "math"
+import (
+	"math"
+)
 
 /*
 
@@ -76,6 +78,7 @@ func (h *Heap) ExtractMin() int {
 	}
 	h.arr[0], h.arr[h.size-1] = h.arr[h.size-1], h.arr[0]
 	h.size--
+
 	h.MinHeapify(0)
 	return h.arr[h.size]
 }

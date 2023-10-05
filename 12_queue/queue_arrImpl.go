@@ -44,14 +44,14 @@ func (q *QueueArrImpl) DeQueue() {
 	q.Len--
 }
 
-func (q *QueueArrImpl) GetFront() interface{} {
+func (q *QueueArrImpl) GetFrontIdx() interface{} {
 	if q.IsEmpty() {
 		return -1
 	}
 	return 0
 }
 
-func (q *QueueArrImpl) GetRear() interface{} {
+func (q *QueueArrImpl) GetRearIdx() interface{} {
 	if q.IsEmpty() {
 		return -1
 	}

@@ -1,8 +1,11 @@
 package leetcode
 
 import (
+	"bufio"
 	"fmt"
+	"io"
 	"math/rand"
+	"os"
 	"sort"
 	"strconv"
 	"strings"
@@ -269,19 +272,6 @@ func CreateLinkedList(sum string, idx int) *linkedList.Node {
 	return &linkedList.Node{temp, CreateLinkedList(sum, idx-1)}
 }
 
-package main
-
-import (
-    "bufio"
-    "fmt"
-    "io"
-    "os"
-    "strconv"
-    "strings"
-)
-
-
-
 /*
  * Complete the 'find_max_elements' function below.
  *
@@ -290,65 +280,65 @@ import (
  */
 
 func find_max_elements(array []int32) int32 {
-n:=array[0]
-target:=array[1]
+	n := array[0]
+	target := array[1]
 
-dp:=make([]int,target+1)
-for  i:=int32(2);i<n-1;i++{
-    num:=array[i]
-    for i:=target;i>=num;i--{
-        dp[i]=max(dp[i],dp[i-num]+1)
-    }
-    
+	dp := make([]int, target+1)
+	for i := int32(2); i < n-1; i++ {
+		num := array[i]
+		for i := target; i >= num; i-- {
+			dp[i] = max(dp[i], dp[i-num]+1)
+		}
+
+	}
+	return int32(dp[target])
 }
-return int32(dp[target])
-}
-func max(a,b int)int{
-    if a>b{
-        return a
-    }
-    return b
+func max(a, b int) int {
+	if a > b {
+		return a
+	}
+	return b
 }
 func main() {
-    reader := bufio.NewReaderSize(os.Stdin, 16 * 1024 * 1024)
+	reader := bufio.NewReaderSize(os.Stdin, 16*1024*1024)
 
-    stdout, err := os.Create(os.Getenv("OUTPUT_PATH"))
-    checkError(err)
+	stdout, err := os.Create(os.Getenv("OUTPUT_PATH"))
+	checkError(err)
 
-    defer stdout.Close()
+	defer stdout.Close()
 
-    writer := bufio.NewWriterSize(stdout, 16 * 1024 * 1024)
+	writer := bufio.NewWriterSize(stdout, 16*1024*1024)
 
-    arrayCount, err := strconv.ParseInt(strings.TrimSpace(readLine(reader)), 10, 64)
-    checkError(err)
+	arrayCount, err := strconv.ParseInt(strings.TrimSpace(readLine(reader)), 10, 64)
+	checkError(err)
 
-    var array []int32
+	var array []int32
 
-    for i := 0; i < int(arrayCount); i++ {
-        arrayItemTemp, err := strconv.ParseInt(strings.TrimSpace(readLine(reader)), 10, 64)
-        checkError(err)
-        arrayItem := int32(arrayItemTemp)
-        array = append(array, arrayItem)
-    }
+	for i := 0; i < int(arrayCount); i++ {
+		arrayItemTemp, err := strconv.ParseInt(strings.TrimSpace(readLine(reader)), 10, 64)
+		checkError(err)
+		arrayItem := int32(arrayItemTemp)
+		array = append(array, arrayItem)
+	}
 
-    result := find_max_elements(array)
+	result := find_max_elements(array)
 
-    fmt.Fprintf(writer, "%d\n", result)
+	fmt.Fprintf(writer, "%d\n", result)
 
-    writer.Flush()
+	writer.Flush()
 }
 
 func readLine(reader *bufio.Reader) string {
-    str, _, err := reader.ReadLine()
-    if err == io.EOF {
-        return ""
-    }
+	str, _, err := reader.ReadLine()
+	if err == io.EOF {
+		return ""
+	}
 
-    return strings.TrimRight(string(str), "\r\n")
+	return strings.TrimRight(string(str), "\r\n")
 }
 
 func checkError(err error) {
-    if err != nil {
-        panic(err)
-    }
+	if err != nil {
+		panic(err)
+	}
 }

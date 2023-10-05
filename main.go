@@ -2,31 +2,19 @@ package main
 
 import (
 	"fmt"
-	"sort"
+	graph "yath/17_graph"
 )
 
 func main() {
-	a := removeElement([]int{3, 2, 2, 3}, 3)
-	fmt.Println(a)
-}
-func removeElement(nums []int, val int) int {
-	low, high := 0, len(nums)-1
-	point := 0
-	for low < high {
-		if nums[low] == val {
-			nums[low] = 0
-			point += 1
-		}
-		if nums[high] == val {
-			nums[high] = 0
-			point += 1
-		}
-		low++
-		high--
-	}
-	sort.Ints(nums)
-	nums = nums[point:]
-	fmt.Println(nums)
-	fmt.Println(point)
-	return len(nums)
+	var adj graph.AdjucentList
+	adj.Init(5)
+	adj.AddEdge(0, 1)
+	adj.AddEdge(0, 2)
+	adj.AddEdge(1, 2)
+	adj.AddEdge(1, 3)
+	adj.AddEdge(2, 3)
+	adj.AddEdge(2, 4)
+	adj.AddEdge(3, 4)
+	// adj.Print()
+	fmt.Println(adj.BFSDisJunction(5))
 }
