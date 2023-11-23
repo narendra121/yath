@@ -148,19 +148,22 @@ func MaximumDifferenceInArray(arr []int) int { //[]int{1, 8, 3, 6, 5}    o/p 7
 	return maxDiff
 }
 
-func ProfitStock(price []int, start, end int) int {
-	if end <= start {
-		return 0
-	}
-	profit := 0
-	for i := start; i < end; i++ {
-		for j := i + 1; j <= end; j++ {
-			if price[j] > price[i] {
-				currProfit := price[j] - price[i] + ProfitStock(price, start, i-1) + ProfitStock(price, j+1, end)
-				profit = int(math.Max(float64(profit), float64(currProfit)))
-			}
-		}
-	}
+func ProfitStock(price []int) int {
+	  profit := 0
+    // no profit available at index 0, so start at index 1
+    for i := 1; i < len(prices); i++ {
+        // Only when the current price is higher than the previous
+        // can we make a profitable sale.
+        if prices[i] > prices[i-1] {
+            profit += prices[i] - prices[i-1]
+        }
+        // The else case is handled implicitly by incrementing i.
+        // When prices[i] is lower than prices[i-1], we just skip
+        // the sale. 
+        //
+        // If this is confusing, try keeping a `min` variable yourself,
+        // and you'll soon realise it's redundant.
+    }
 	return profit
 }
 
